@@ -1,5 +1,7 @@
 <?php
 
+$comment_array = array();
+
 if(!empty($_POST["submitButton"])) {
     echo $_POST["username"];
     echo $_POST["comment"];
@@ -7,11 +9,17 @@ if(!empty($_POST["submitButton"])) {
 
 //DB接続
 try {
-    $pdo = new PDO('mysql:host=localhost;dbname=bbc-yt', "root", "root");
+    $pdo = new PDO('mysql:host=localhost;dbname=bbc-yt', "root1234test", "root1234test");
 } catch (PDOException $e) {
     echo $e->getMessage();
 }
 
+//DBからコメントデータを取得する
+$sql = "SELECT `id`, `username`, `comment`, `postDate` FROM `bbc-table`;";
+$comment_array = $pdo->query($sql);
+
+//DBの接続を閉じる
+$pdo = null;
 
 ?>
 
