@@ -5,6 +5,13 @@ if(!empty($_POST["submitButton"])) {
     echo $_POST["comment"];
 }
 
+//DB接続
+try {
+    $pdo = new PDO('mysql:host=localhost;dbname=bbc-yt', "root", "root");
+} catch (PDOException $e) {
+    echo $e->getMessage();
+}
+
 
 ?>
 
