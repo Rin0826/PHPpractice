@@ -16,6 +16,8 @@
             <form class="formWrapper">
                 <div>
                     <input type="submit" value="書き込む">
+                    <label for="">名前：</label>
+                    <input type="text" name="username">
                 </div>
             </form>
         </div>
