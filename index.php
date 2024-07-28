@@ -1,4 +1,7 @@
 <?php
+echo $_POST["username"];
+echo $_POST["comment"];
+
 ?>
 
 <!DOCTYPE html>
@@ -13,7 +16,7 @@
         <h1 class="title">PHPで掲示板アプリ</h1>
         <hr>
         <div class="boardWrapper">
-            <form class="formWrapper">
+            <form class="formWrapper" method="POST">
                 <section>
                     <article>
                         <div class="wrapper">
@@ -33,7 +36,7 @@
                     <input type="text" name="username">
                 </div>
                 <div>
-                    <textarea class="commentTextArea"></textarea>
+                    <textarea class="commentTextArea" name="comment"></textarea>
                 </div>
             </form>
         </div>
