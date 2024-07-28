@@ -10,6 +10,14 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        
+        <h1 class="title">PHPで掲示板アプリ</h1>
+        <hr>
+        <div class="boardWrapper">
+            <form class="formWrapper">
+                <div>
+                    <input type="submit" value="書き込む">
+                </div>
+            </form>
+        </div>
     </body>
 </html>
