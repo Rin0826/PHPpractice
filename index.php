@@ -19,6 +19,9 @@
                     <label for="">名前：</label>
                     <input type="text" name="username">
                 </div>
+                <div>
+                    <textarea class="commentTextArea"></textarea>
+                </div>
             </form>
         </div>
     </body>
