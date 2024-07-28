@@ -1,27 +1,28 @@
 <?php
 
+date_default_timezone_set("Asia/Tokyo");
+
 $comment_array = array();
 $pdo = null;
 $stmt = null;
 
 //DB接続
 try {
-    $pdo = new PDO('mysql:host=localhost;dbname=bbc-yt', "root1234test", "root1234test");
+    $pdo = new PDO('mysql:host=localhost;dbname=bbc-yt', "root", "");
 } catch (PDOException $e) {
     echo $e->getMessage();
 }
 
 
 //フォームを打ち込んだ時
-if(!empty($_POST["submitButton"])) {
-
+if (!empty($_POST["submitButton"])) {
     $postDate = date("Y-m-d H:i:s");
     
     try {
         $stmt = $pdo->prepare("INSERT INTO `bbc-table` (`username`, `comment`, `postDate`) VALUES (:username, :comment, :postDate);");
-        $stmt->bindParam(':username', $_POST['username']);
-        $stmt->bindParam(':comment', $_POST['comment']);
-        $stmt->bindParam(':comment', $postDate);
+        $stmt->bindParam(':username', $_POST['username'], PDO::PARAM_STR);
+        $stmt->bindParam(':comment', $_POST['comment'], PDO::PARAM_STR);
+        $stmt->bindParam(':postDate', $postDate, PDO::PARAM_STR);
 
         $stmt->execute();
     } catch (PDOException $e) {
