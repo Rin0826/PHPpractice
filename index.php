@@ -1,11 +1,8 @@
 <?php
 
 $comment_array = array();
-
-if(!empty($_POST["submitButton"])) {
-    echo $_POST["username"];
-    echo $_POST["comment"];
-}
+$pdo = null;
+$stmt = null;
 
 //DB接続
 try {
@@ -13,6 +10,26 @@ try {
 } catch (PDOException $e) {
     echo $e->getMessage();
 }
+
+
+//フォームを打ち込んだ時
+if(!empty($_POST["submitButton"])) {
+
+    $postDate = date("Y-m-d H:i:s");
+    
+    try {
+        $stmt = $pdo->prepare("INSERT INTO `bbc-table` (`username`, `comment`, `postDate`) VALUES (:username, :comment, :postDate);");
+        $stmt->bindParam(':username', $_POST['username']);
+        $stmt->bindParam(':comment', $_POST['comment']);
+        $stmt->bindParam(':comment', $postDate);
+
+        $stmt->execute();
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+    }
+}
+
+
 
 //DBからコメントデータを取得する
 $sql = "SELECT `id`, `username`, `comment`, `postDate` FROM `bbc-table`;";
@@ -37,16 +54,18 @@ $pdo = null;
         <div class="boardWrapper">
             <form class="formWrapper" method="POST">
                 <section>
+                    <?php foreach($comment_array as $comment) : ?>
                     <article>
                         <div class="wrapper">
                             <div class="nameArea">
                                 <span>名前：</span>
-                                <p class="username">shinCode</p>
-                                <time>2024/7/28</time>
+                                <p class="username"><?php echo $comment["username"]; ?></p>
+                                <time>:<?php echo $comment["postDate"]; ?></time>
                             </div>
-                            <p class="comment">手書きコメントです</p>
+                            <p class="comment"><?php echo $comment["comment"]; ?></p>
                         </div>
                     </article>
+                    <?php endforeach; ?>
                 </section>
 
                 <div>
