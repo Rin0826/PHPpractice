@@ -16,6 +16,19 @@ try {
 
 //フォームを打ち込んだ時
 if (!empty($_POST["submitButton"])) {
+
+    //名前のチェック
+    if(empty($_POST["username"])) {
+        echo "名前入力は必須です";
+    }
+    //コメントのチェック
+    if(empty($_POST["comment"])) {
+        echo "内容入力は必須です";
+    }
+
+
+
+
     $postDate = date("Y-m-d H:i:s");
     
     try {
