@@ -14,6 +14,19 @@
         <hr>
         <div class="boardWrapper">
             <form class="formWrapper">
+                <section>
+                    <article>
+                        <div class="wrapper">
+                            <div class="nameArea">
+                                <span>名前：</span>
+                                <p class="username">shinCode</p>
+                                <time>2024/7/28</time>
+                            </div>
+                            <p class="comment">手書きコメントです</p>
+                        </div>
+                    </article>
+                </section>
+
                 <div>
                     <input type="submit" value="書き込む">
                     <label for="">名前：</label>
