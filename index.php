@@ -1,5 +1,7 @@
 <?php
 
+//SQLインジェクションに対するエスケープ処理は行っていない
+
 date_default_timezone_set("Asia/Tokyo");
 
 $comment_array = array();
